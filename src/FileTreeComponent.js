@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 
 
-function Folder(props) {
+function FileTreeComponent(props) {
 
   // create an array for storing the subfolder components
   const subFolders = [];
@@ -17,8 +17,8 @@ function Folder(props) {
     // this folder has subfolders, that means it is not a file
     isFile = false;
 
-    // create a list item that contains a Folder component
-    const folder = <li key={folderName}><Folder name={folderName} subTree={props.subTree[folderName]} /></li>;
+    // create a list item that contains a FileTreeComponent component
+    const folder = <li key={folderName}><FileTreeComponent name={folderName} subTree={props.subTree[folderName]} /></li>;
 
     // add the list item to the list of sub folders
     subFolders.push(folder);
@@ -43,9 +43,9 @@ function Folder(props) {
 }
 
 // using prop types to get a warning if the component don't get the right props
-Folder.propTypes = {
+FileTreeComponent.propTypes = {
   name: PropTypes.string.isRequired,
   subTree: PropTypes.object.isRequired
 };
 
-export default Folder;
+export default FileTreeComponent;

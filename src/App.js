@@ -1,5 +1,5 @@
 import './App.css';
-import Folder from "./Folder";
+import FileTreeComponent from "./FileTreeComponent";
 
 
 const filePaths = [
@@ -61,7 +61,7 @@ function App() {
 
   return (
     <div className="App">
-      <Folder name="root" subTree={fileTree} />
+      <FileTreeComponent name="root" subTree={fileTree} />
     </div>
   );
 }
