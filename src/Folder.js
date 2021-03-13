@@ -1,13 +1,21 @@
 import PropTypes from "prop-types";
+import React from "react";
 
 
 function Folder(props) {
 
-  // create an array for storing the sub folder components
+  // create an array for storing the subfolder components
   const subFolders = [];
 
-  // loop through the properties (sub folders) of the sub tree prop
+  // assuming all indata represents a file, and not an empty folder
+  // "folders" without any subfolders is categorised as a file
+  let isFile = true;
+
+  // loop through the properties (subfolders) of the sub tree prop
   for (const folderName in props.subTree) {
+
+    // this folder has subfolders, that means it is not a file
+    isFile = false;
 
     // create a list item that contains a Folder component
     const folder = <li key={folderName}><Folder name={folderName} subTree={props.subTree[folderName]} /></li>;
@@ -16,12 +24,21 @@ function Folder(props) {
     subFolders.push(folder);
   }
 
+  // a file has been detected and is rendered in another way than a folder
+  if (isFile) {
+    return (
+      <React.Fragment>
+        {props.name + " (file)"}
+      </React.Fragment>
+    );
+  }
+
   // render the name of the folder and its contents
   return (
-    <div>
+    <React.Fragment>
       {props.name}
       <ul>{subFolders}</ul>
-    </div>
+    </React.Fragment>
   );
 }
 
