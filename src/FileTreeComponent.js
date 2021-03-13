@@ -30,8 +30,13 @@ function FileTreeComponent(props) {
   // render the name of the component and its contents
   return (
     <React.Fragment>
+
+      { /* render the name of this file tree component */ }
       {props.name}
-      <ul>{subComponents}</ul>
+
+      { /* only render the subcomponents list if there are any subcomponents */ }
+      {subComponents.length > 0 ? <ul>{subComponents}</ul> : ""}
+
     </React.Fragment>
   );
 }
