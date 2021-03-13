@@ -1,5 +1,9 @@
-.folder {
-  list-style-type: "\1F4C1";
+li {
+  list-style-type: "\2795";
+}
+
+.open {
+  list-style-type: "\2796";
 }
 
 .file {

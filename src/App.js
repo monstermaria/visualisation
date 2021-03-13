@@ -60,9 +60,9 @@ function App() {
   console.log(fileTree);
 
   return (
-    <div className="App">
+    <ul>
       <FileTreeComponent name="root" subTree={fileTree} />
-    </div>
+    </ul>
   );
 }
 
