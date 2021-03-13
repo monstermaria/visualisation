@@ -5,33 +5,33 @@ import React from "react";
 
 function FileTreeComponent(props) {
 
-  // create an array for storing the subfolder components
-  const subFolders = [];
+  // create an array for storing the subcomponent
+  const subComponents = [];
 
-  // loop through the properties (subfolders) of the sub tree prop
-  for (const folderName in props.subTree) {
+  // loop through the properties (subcomponents) of the sub tree prop
+  for (const componentName in props.subTree) {
 
     // assuming all indata represents a file, and not an empty folder
-    // "folders" without any subfolders is categorised as a file
-    const isFile = Object.keys(props.subTree[folderName]).length === 0;
+    // components without any subcomponents is categorised as a file
+    const isFile = Object.keys(props.subTree[componentName]).length === 0;
 
     // decide class for this list item
     const listItemClass = isFile ? "file" : "folder";
 
     // create a list item that contains a FileTreeComponent component
-    const folder = <li key={folderName} className={listItemClass}>
-      <FileTreeComponent name={folderName} subTree={props.subTree[folderName]} />
+    const component = <li key={componentName} className={listItemClass}>
+      <FileTreeComponent name={componentName} subTree={props.subTree[componentName]} />
     </li>;
 
-    // add the list item to the list of sub folders
-    subFolders.push(folder);
+    // add the list item to the list of subcomponents
+    subComponents.push(component);
   }
 
-  // render the name of the folder and its contents
+  // render the name of the component and its contents
   return (
     <React.Fragment>
       {props.name}
-      <ul>{subFolders}</ul>
+      <ul>{subComponents}</ul>
     </React.Fragment>
   );
 }
