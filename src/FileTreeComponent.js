@@ -23,6 +23,9 @@ function FileTreeComponent(props) {
   // variable for setting a css class on the component that changes the style of the list marker
   let listItemClass = "";
 
+  // show or hide contents list of a folder depending on if it is open or not
+  const displayClass = open ? "show" : "hide";
+
   // loop through the properties (subcomponents) of the subtree prop
   for (const componentName in props.subTree) {
 
@@ -51,8 +54,11 @@ function FileTreeComponent(props) {
       { /* render the name of this file tree component */ }
       {props.name}
 
-      { /* only render the subcomponents list if there are any subcomponents and the folder is open */ }
-      {subComponents.length > 0 && open ? <ul>{subComponents}</ul> : ""}
+      { /* only render the subcomponents list if there are any subcomponents
+          render all subcomponents, but show them only if the enclosing folder is open
+          this is done to keep the open state of subfolders intact,
+          when a folder higher up in the hierarcy is closed */ }
+      {subComponents.length > 0 ? <ul className={displayClass}>{subComponents}</ul> : ""}
 
     </li>
   );
