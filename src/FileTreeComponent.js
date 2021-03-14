@@ -36,6 +36,23 @@ function FileTreeComponent(props) {
     subComponents.push(component);
   }
 
+  subComponents.sort((a, b) => {
+
+    // folders before files
+    const aIsFolder = Object.keys(a.props.subTree).length > 0;
+    const bIsFolder = Object.keys(b.props.subTree).length > 0;
+
+    if (aIsFolder) {
+      return -1;
+    }
+
+    if (bIsFolder) {
+      return 1;
+    }
+
+    return 0;
+  });
+
   // decide class for this list item
   if (open) {
     listItemClass = "open";
