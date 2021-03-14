@@ -36,21 +36,23 @@ function FileTreeComponent(props) {
     subComponents.push(component);
   }
 
+  // sort the contents (subcomponents) of the folder
   subComponents.sort((a, b) => {
 
-    // folders before files
+    // sort folders before files
     const aIsFolder = Object.keys(a.props.subTree).length > 0;
     const bIsFolder = Object.keys(b.props.subTree).length > 0;
 
-    if (aIsFolder) {
+    if (aIsFolder  && !bIsFolder) {
       return -1;
     }
 
-    if (bIsFolder) {
+    if (bIsFolder && !aIsFolder) {
       return 1;
     }
 
-    return 0;
+    // if the elements being compared is of the same type, sort on the name (key)
+    return a.key.localeCompare(b.key);
   });
 
   // decide class for this list item
